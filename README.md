@@ -6,6 +6,7 @@
 **Table of Contents**
 
 - [icons-in-terminal-ibuffer](#icons-in-terminal-ibuffer)
+    - [Screenshot](#screenshot)
     - [Pre-requisites](#pre-requisites)
     - [Install](#install)
     - [Original](#original)
@@ -17,6 +18,11 @@ Display icons for all buffers in ibuffer.
 This only works for Emacs **in terminal** (emacs -nw).
 If you use Emacs GUI you should refer to <a
 href="https://github.com/seagle0128/all-the-icons-ibuffer">*all-the-icons-ibuffer*</a>
+
+## Screenshot
+![icons-in-terminal-ibuffer](https://user-images.githubusercontent.com/236042/80401294-0c20d780-88f7-11ea-9863-87b4b2ea2162.png)
+
+cf) The bottom line is not part of Emacs. It is *tmux* status bar 😉
 
 ## Pre-requisites
 
