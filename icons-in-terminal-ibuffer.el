@@ -25,48 +25,33 @@
 ;; along with this program; see the file COPYING.  If not, write to
 ;; the Free Software Foundation, Inc., 51 Franklin Street, Fifth
 ;; Floor, Boston, MA 02110-1301, USA.
-;;
 
-;;; Commentary:
-
-;; Display icons for all buffers in ibuffer.
-;;
-;; Install:
-;; From melpa, `M-x package-install RET all-the-icons-ibuffer RET`.
-;; (all-the-icons-ibuffer-mode 1)
-;; or
-;; (use-package all-the-icons-ibuffer-mode
-;;   :ensure t
-;;   :init (all-the-icons-ibuffer-mode 1))
-
-
-;;; Code:
 
 (require 'ibuffer)
-(require 'all-the-icons)
+(require 'icons-in-terminal)
 
-(defgroup all-the-icons-ibuffer nil
+(defgroup icons-in-terminal-ibuffer nil
   "Display icons for all buffers in ibuffer."
-  :group 'all-the-icons
+  :group 'icons-in-terminal
   :group 'ibuffer
-  :link '(url-link :tag "Homepage" "https://github.com/seagle0128/all-the-icons-ibuffer"))
+  :link '(url-link :tag "Homepage" "https://github.com/rhdxmr/icons-in-terminal-ibuffer"))
 
-(defcustom all-the-icons-ibuffer-icon-size 1.0
+(defcustom icons-in-terminal-ibuffer-icon-size 1.0
   "The default icon size in ibuffer."
-  :group 'all-the-icons-ibuffer
+  :group 'icons-in-terminal-ibuffer
   :type 'number)
 
-(defcustom all-the-icons-ibuffer-icon-v-adjust 0.0
+(defcustom icons-in-terminal-ibuffer-icon-v-adjust 0.0
   "The default vertical adjustment of the icon in ibuffer."
-  :group 'all-the-icons-ibuffer
+  :group 'icons-in-terminal-ibuffer
   :type 'number)
 
-(defcustom all-the-icons-ibuffer-human-readable-size t
+(defcustom icons-in-terminal-ibuffer-human-readable-size t
   "Use human readable file size in ibuffer."
-  :group 'all-the-icons-ibuffer
+  :group 'icons-in-terminal-ibuffer
   :type 'boolean)
 
-(defcustom all-the-icons-ibuffer-formats
+(defcustom icons-in-terminal-ibuffer-formats
   `((mark modified read-only ,(if (>= emacs-major-version 26) 'locked "")
           ;; Here you may adjust by replacing :right with :center or :left
           ;; According to taste, if you want the icon further from the name
@@ -77,16 +62,16 @@
           " " (mode 16 16 :left :elide)
           " " filename-and-process)
     (mark " " (name 16 -1) " " filename))
-  "A list of ways to display buffer lines with `all-the-icons'.
+  "A list of ways to display buffer lines with `icons-in-terminal'.
 
 See `ibuffer-formats' for details."
-  :group 'all-the-icons-ibuffer
+  :group 'icons-in-terminal-ibuffer
   :type '(repeat sexp))
 
 
 
 ;; Human readable file size for ibuffer
-;;;###autoload(autoload 'ibuffer-make-column-size-h "all-the-icons-ibuffer")
+;;;###autoload(autoload 'ibuffer-make-column-size-h "icons-in-terminal-ibuffer")
 (define-ibuffer-column size-h
   (:name "Size"
    :inline t
@@ -101,38 +86,38 @@ See `ibuffer-formats' for details."
 		          total)))
        (format "%.0f" total))))
   (let ((size (buffer-size)))
-    (if all-the-icons-ibuffer-human-readable-size
+    (if icons-in-terminal-ibuffer-human-readable-size
         (file-size-human-readable size)
       (format "%s" (buffer-size)))))
 
 ;; For alignment, the size of the name field should be the width of an icon
-;;;###autoload(autoload 'ibuffer-make-column-icon "all-the-icons-ibuffer")
+;;;###autoload(autoload 'ibuffer-make-column-icon "icons-in-terminal-ibuffer")
 (define-ibuffer-column icon (:name "  ")
-  (let ((icon (if (and (buffer-file-name) (all-the-icons-auto-mode-match?))
-                  (all-the-icons-icon-for-file (file-name-nondirectory (buffer-file-name))
-                                               :height all-the-icons-ibuffer-icon-size
-                                               :v-adjust all-the-icons-ibuffer-icon-v-adjust)
-                (all-the-icons-icon-for-mode major-mode
-                                             :height all-the-icons-ibuffer-icon-size
-                                             :v-adjust all-the-icons-ibuffer-icon-v-adjust))))
+  (let ((icon (if (and (buffer-file-name) (icons-in-terminal-auto-mode-match?))
+                  (icons-in-terminal-icon-for-file (file-name-nondirectory (buffer-file-name))
+                                               :height icons-in-terminal-ibuffer-icon-size
+                                               :v-adjust icons-in-terminal-ibuffer-icon-v-adjust)
+                (icons-in-terminal-icon-for-mode major-mode
+                                             :height icons-in-terminal-ibuffer-icon-size
+                                             :v-adjust icons-in-terminal-ibuffer-icon-v-adjust))))
     (if (or (null icon) (symbolp icon))
-        (setq icon (all-the-icons-faicon "file-o"
-                                         :face 'all-the-icons-dsilver
-                                         :height (* 0.9 all-the-icons-ibuffer-icon-size)
-                                         :v-adjust all-the-icons-ibuffer-icon-v-adjust))
+        (setq icon (icons-in-terminal-faicon "file-o"
+                                         :face 'icons-in-terminal-dsilver
+                                         :height (* 0.9 icons-in-terminal-ibuffer-icon-size)
+                                         :v-adjust icons-in-terminal-ibuffer-icon-v-adjust))
       icon)))
 
-(defvar all-the-icons-ibuffer-old-formats ibuffer-formats)
+(defvar icons-in-terminal-ibuffer-old-formats ibuffer-formats)
 
 ;;;###autoload
-(define-minor-mode all-the-icons-ibuffer-mode
+(define-minor-mode icons-in-terminal-ibuffer-mode
   "Display icons for all buffers in ibuffer."
   :lighter nil
   :global t
-  (if all-the-icons-ibuffer-mode
-      (setq ibuffer-formats all-the-icons-ibuffer-formats)
-    (setq ibuffer-formats all-the-icons-ibuffer-old-formats)))
+  (if icons-in-terminal-ibuffer-mode
+      (setq ibuffer-formats icons-in-terminal-ibuffer-formats)
+    (setq ibuffer-formats icons-in-terminal-ibuffer-old-formats)))
 
-(provide 'all-the-icons-ibuffer)
+(provide 'icons-in-terminal-ibuffer)
 
-;;; all-the-icons-ibuffer.el ends here
+;;; icons-in-terminal-ibuffer.el ends here
