@@ -1,94 +1,45 @@
-# all-the-icons-ibuffer
+# icons-in-terminal-ibuffer
 
-[![Build Status](https://travis-ci.org/seagle0128/all-the-icons-ibuffer.svg?branch=master)](https://travis-ci.org/seagle0128/all-the-icons-ibuffer)
-[![MELPA](https://melpa.org/packages/all-the-icons-ibuffer-badge.svg)](https://melpa.org/#/all-the-icons-ibuffer)
-[![MELPA Stable](https://stable.melpa.org/packages/all-the-icons-ibuffer-badge.svg)](https://stable.melpa.org/#/all-the-icons-ibuffer)
 [![License](http://img.shields.io/:license-gpl3-blue.svg)](LICENSE)
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
-- [all-the-icons-ibuffer](#all-the-icons-ibuffer)
+- [icons-in-terminal-ibuffer](#icons-in-terminal-ibuffer)
+    - [Pre-requisites](#pre-requisites)
     - [Install](#install)
-        - [Manual](#manual)
-        - [Use-package](#use-package)
-    - [Customize](#customize)
-    - [Screenshots](#screenshots)
-    - [Donate](#donate)
+    - [Original](#original)
 
 <!-- markdown-toc end -->
 
 Display icons for all buffers in ibuffer.
 
-This package is extracted from [Centaur
-Emacs](https://github.com/seagle0128/.emacs.d) and leverages
-[all-the-icons](https://github.com/domtronn/all-the-icons.el).
+This only works for Emacs **in terminal** (emacs -nw).
+If you use Emacs GUI you should refer to <a
+href="https://github.com/seagle0128/all-the-icons-ibuffer">*all-the-icons-ibuffer*</a>
+
+## Pre-requisites
+
+1. A font from  <a href="https://github.com/sebastiencs/icons-in-terminal">icons-in-terminal</a> which unifies many useful fonts. Follow the instruction found there.
+2. An <a href="https://github.com/seagle0128/icons-in-terminal.el">icons-in-terminal.el</a> package.
+  Put the elisp files in a directory where load-path locates
 
 ## Install
 
-### Manual
+Put the elisp files of this project into a directory where load-path indicates. And add few lines of elisp code to your init.el
 
-From melpa, `M-x package-install RET all-the-icons-ibuffer RET`.
 
-``` emacs-lisp
-(all-the-icons-ibuffer-mode 1)
+```emacs-lisp
+(require 'icons-in-terminal-ibuffer)
+(add-hook 'ibuffer-mode-hook (lambda () (if (display-graphic-p) (all-the-icons-ibuffer-mode) (icons-in-terminal-ibuffer-mode))))
+
 ```
 
-### Use-package
+This code assumes that you use all-the-icons-ibuffer-mode for Emacs GUI.
 
-``` emacs-lisp
-(use-package all-the-icons-ibuffer
-  :ensure t
-  :init (all-the-icons-ibuffer-mode 1))
-```
+Enjoy! 😀
 
-To display icons correctly, you should run `M-x all-the-icons-install-fonts` to
-install the necessary fonts.
 
-Enjoy! :smile:
-
-## Customize
-
-``` emacs-lisp
-;; The default icon size in ibuffer.
-(setq all-the-icons-ibuffer-icon-size 1.0)
-
-;; The default vertical adjustment of the icon in ibuffer.
-(setq all-the-icons-ibuffer-icon-v-adjust 0.0)
-
-;; Use human readable file size in ibuffer.
-(setq  all-the-icons-ibuffer-human-readable-size t)
-
-;; A list of ways to display buffer lines with `all-the-icons'.
-;; See `ibuffer-formats' for details.
-all-the-icons-ibuffer-formats
-```
-
-## Screenshots
-
-![all-the-icons-ibuffer](https://user-images.githubusercontent.com/140797/73564021-b1afe080-4499-11ea-87da-e2fa32d18f53.png
-"icons with ibuffer")
-
-## Donate
-
-If you think the it's helpful for you, please consider paying a cup of coffee
-for me. Thank you! :smile:
-
-<img
-src="https://user-images.githubusercontent.com/140797/65818854-44204900-e248-11e9-9cc5-3e6339587cd8.png"
-alt="Alipay" width="120"/>
-&nbsp;&nbsp;&nbsp;&nbsp;
-<img
-src="https://user-images.githubusercontent.com/140797/65818844-366ac380-e248-11e9-931c-4bd872d0566b.png"
-alt="Wechat Pay" width="120"/>
-
-<a href="https://paypal.me/seagle0128" target="_blank">
-<img
-src="https://www.paypalobjects.com/digitalassets/c/website/marketing/apac/C2/logos-buttons/optimize/44_Grey_PayPal_Pill_Button.png"
-alt="PayPal" width="120" />
-</a>
-&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://www.buymeacoffee.com/s9giES1" target="_blank">
-<img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee"
-width="160"/>
-</a>
+## Original
+This repository is inspired by <a
+href="https://github.com/seagle0128/all-the-icons-ibuffer">all-the-icons-ibuffer</a>. It shows pretty icons in Emacs GUI 👍
