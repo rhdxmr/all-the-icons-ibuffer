@@ -10,6 +10,7 @@
     - [Pre-requisites](#pre-requisites)
     - [Install](#install)
     - [Original](#original)
+    - [Wish List](#wish-list)
 
 <!-- markdown-toc end -->
 
@@ -22,7 +23,7 @@ href="https://github.com/seagle0128/all-the-icons-ibuffer">*all-the-icons-ibuffe
 ## Screenshot
 ![icons-in-terminal-ibuffer](https://user-images.githubusercontent.com/236042/80401294-0c20d780-88f7-11ea-9863-87b4b2ea2162.png)
 
-cf) The bottom line is not part of Emacs. It is *tmux* status bar 😉
+cf) The line at the very bottom is not part of Emacs. It is *tmux* status bar 😉
 
 ## Pre-requisites
 
@@ -37,8 +38,10 @@ Put the elisp files of this project into a directory where load-path indicates. 
 
 ```emacs-lisp
 (require 'icons-in-terminal-ibuffer)
-(add-hook 'ibuffer-mode-hook (lambda () (if (display-graphic-p) (all-the-icons-ibuffer-mode) (icons-in-terminal-ibuffer-mode))))
-
+(add-hook 'ibuffer-mode-hook (lambda ()
+    (if (display-graphic-p)
+        (all-the-icons-ibuffer-mode)
+        (icons-in-terminal-ibuffer-mode))))
 ```
 
 This code assumes that you use all-the-icons-ibuffer-mode for Emacs GUI.
@@ -49,3 +52,8 @@ Enjoy! 😀
 ## Original
 This repository is inspired by <a
 href="https://github.com/seagle0128/all-the-icons-ibuffer">all-the-icons-ibuffer</a>. It shows pretty icons in Emacs GUI 👍
+
+
+## Wish List
+It is fully inspired by *all-the-icon-ibuffer* but I hope to unify both *icons-in-terminal-ibuffer* and *all-the-icon-ibuffer* packages into one. These two have the same functionality and the same internal structure, so it is very natural to become one. However the biggest obstacle is that *icons-in-terminal-ibuffer* lacks portability so it is hard to expect that it works everywhere.
+So for now, I made it as a forked project.
